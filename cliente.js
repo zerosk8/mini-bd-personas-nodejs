@@ -28,6 +28,15 @@
  * 4. Buscar datos de personas, segun un atributo dado y el valor: <atributo>,<valor>
  *      donde <atributo> puede ser: 'dni', 'nombre', 'apellido1', 'apellido2' o 'edad'
  * 
+ * El mensaje recibido por el servidor siempre contiene 2 campos dentro de la estructura JSON:
+ * 
+ * - status: su valor es "200" en caso de que se haya producido con éxito la operación solicitada, y el valor es "404" en caso de error.
+ *      No debe confundirse con el protocolo HTTP, aunque utilice la misma nomenclatura, ya que su uso es meramente informativo y sirve 
+ *      para informar de los mensajes de error dentro de la web, sin que intervenga el protocolo HTTP.
+ * 
+ * - content: su valor puede contener un mensaje de éxito, un diccionario con objetos de tipo "Persona" o un mensaje de error.
+ *      No debe confundirse con el protocolo HTTP, aunque utilice la misma nomenclatura.
+ * 
  * La base de datos esta implementada en un diccionario, el cual, utiliza el DNI de la persona como identificativo
  * unico para cada persona. Las respuestas recibidas por el servidor siguen la estructura JSON.
  * 
@@ -39,7 +48,7 @@
  * 
  ***********************************************************************************/
 
-var restler = require('./restler');
+var restler = require('restler');
 var readline = require('readline');
 
 var URL_PERSONA = 'http://127.0.0.1:8080/persona/'; // Url para la base de datos
@@ -83,6 +92,7 @@ datos_entrada.question("Por favor, seleccione una opción: ",function(opcion)
                             console.log("               RESPUESTA                ");
                             console.log("****************************************\n");
                             console.log(data);
+                            console.log('\n');
                         });
                         
                         datos_entrada.close();
@@ -102,6 +112,7 @@ datos_entrada.question("Por favor, seleccione una opción: ",function(opcion)
                             console.log("               RESPUESTA                ");
                             console.log("****************************************\n");
                             console.log(data);
+                            console.log('\n');
                         });
                         
                         datos_entrada.close();
@@ -122,6 +133,7 @@ datos_entrada.question("Por favor, seleccione una opción: ",function(opcion)
                             console.log("               RESPUESTA                ");
                             console.log("****************************************\n");
                             console.log(data);
+                            console.log('\n');
                         });
                         
                         datos_entrada.close();
@@ -142,6 +154,7 @@ datos_entrada.question("Por favor, seleccione una opción: ",function(opcion)
                             console.log("               RESPUESTA                ");
                             console.log("****************************************\n");
                             console.log(data);
+                            console.log('\n');
                         });
                         
                         datos_entrada.close();
